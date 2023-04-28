@@ -11,7 +11,7 @@ playerEl.addEventListener("click", function () {
   console.log(firstName);
   var lastName = lastNamePlayer.value
   console.log(lastName);
-fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}&search=${lastName}`)
+fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
   .then(function (answer) {
     // console.log(answer)
     return answer.json();
