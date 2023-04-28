@@ -1,7 +1,17 @@
-var firtName = "Joel"
-var lastName = "Embiid"
-var stats = []
-fetch(`https://www.balldontlie.io/api/v1/players?search=${firtName}&search=${lastName}`)
+var playerEl = document.querySelector("#search");
+var firstNamePlayer = document.querySelector("#first-name");
+var lastNamePlayer = document.querySelector("#last-name");
+
+// var firstName = firstNamePlayer.value
+// var lastName = lastNamePlayer.value
+var stats = [];
+
+playerEl.addEventListener("click", function () {
+  var firstName = firstNamePlayer.value
+  console.log(firstName);
+  var lastName = lastNamePlayer.value
+  console.log(lastName);
+fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}&search=${lastName}`)
   .then(function (answer) {
     // console.log(answer)
     return answer.json();
@@ -17,4 +27,13 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firtName}&search=${las
     .then(function (info) {
         console.log(info);
     })
-  });
+  })
+  fetch(`http://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=5`)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (info) {
+    console.log(info);
+    console.log(info.data[0].images.original.url);
+  })
+});
