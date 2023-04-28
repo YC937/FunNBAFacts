@@ -20,7 +20,9 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     console.log(data)
     stats.push(data.data[0].id);
     console.log(stats);
-    fetch(`https://www.balldontlie.io/api/v1/stats?player_ids[]=${stats}&seasons=2022`)
+    var playerStats = stats[0];
+    console.log(playerStats);
+    fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
     .then(function (response) {
         return response.json();
     })
