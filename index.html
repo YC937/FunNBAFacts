@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>NBA Fun Facts!</title>
-    <link rel="stylesheet" href="./assets/style.css">
+    <!-- <link rel="stylesheet" href="./assets/style.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
-<main>
-  <body>
+<body>
+  <nav class="navbar has shadow is-info">
+    <section class="navbar-brand">
+      <a class="navbar-item">
+        <img src="assets/nba-logo.jpeg" alt="nba-logo" style="max-height: 13vh">
+      </a>
+    </section>
+    <section class="navbar-menu" id="nav-links">
+      <div class="navbar-end">
+        <a href="https://www.nba.com/" target="_blank" class="navbar-item">Visit the official NBA website!</a>
+        <a class="navbar-item">Seasons</a>
+      </div>
+    </section>
+  </nav>
+  <main>
     <form id="search-bar">
         <button type="button" id="saved">Saved</button>
     </form>
@@ -29,14 +42,7 @@
 
 
 
-  </body>
-</main>
-<script src="./assets/script.js"></script>
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-<body>
-    
+  </main>
+  <script src="./assets/script.js"></script>
 </body>
 </html>
