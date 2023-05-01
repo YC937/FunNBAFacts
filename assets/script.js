@@ -1,39 +1,72 @@
 var playerEl = document.querySelector("#search");
+var image = document.querySelector("#image");
+var pict = document.querySelector("#pic")
 var firstNamePlayer = document.querySelector("#first-name");
 var lastNamePlayer = document.querySelector("#last-name");
+var burgerIcon = document.querySelector("#burger");
+var navbarMenu = document.querySelector("#nav-links")
+var links = [];
+//Mobile Menu
+burgerIcon.addEventListener("click", getMenu);
 
-// var firstName = firstNamePlayer.value
-// var lastName = lastNamePlayer.value
-var stats = [];
+function getMenu() {
+    navbarMenu.classList.toggle("is-active")
+}
 
-playerEl.addEventListener("click", function () {
-  var firstName = firstNamePlayer.value
-  console.log(firstName);
-  var lastName = lastNamePlayer.value
-  console.log(lastName);
-fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
-  .then(function (answer) {
-    // console.log(answer)
-    return answer.json();
-  })
-  .then(function (data) {
-    console.log(data)
-    stats.push(data.data[0].id);
-    console.log(stats);
-    fetch(`https://www.balldontlie.io/api/v1/stats?player_ids[]=${stats}&seasons=2022`)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (info) {
-        console.log(info);
-    })
-  })
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=5`)
+//Default giffys
+
+fetch(`http://api.giphy.com/v1/gifs/search?q=NBA}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
   .then(function (response) {
     return response.json();
   })
   .then(function (info) {
-    console.log(info);
-    console.log(info.data[0].images.original.url);
+    var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+    // console.log(randomItem.images.original.url);
+    var giff = randomItem.images.original.url;
+    var ghiph = document.createElement("img");
+    ghiph.src = giff;
+    image.append(ghiph);
+    links.push(giff);
+  });
+
+var stats = [];
+
+playerEl.addEventListener("click", function () {
+  image.innerHTML = "";
+  links.length = 0;
+  var firstName = firstNamePlayer.value
+  if(firstName === "") {
+    location.reload();
+  }
+  var lastName = lastNamePlayer.value
+  if(lastName === "") {
+    location.reload();
+  }
+fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
+  .then(function (answer) {
+    return answer.json();
+  })
+  .then(function (data) {
+    stats.push(data.data[0].id);
+    var playerStats = stats[0];
+    fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (info) {
+    })
+  })
+  fetch(`http://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (info) {
+    var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+    // console.log(randomItem.images.original.url);
+    var giffy = randomItem.images.original.url;
+    links.push(giffy);
+    var ghiphy = document.createElement("img");
+    ghiphy.src = links;
+    image.append(ghiphy);
   })
 });
