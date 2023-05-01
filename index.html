@@ -15,34 +15,49 @@
       <a class="navbar-item">
         <img src="assets/nba-logo.jpeg" alt="nba-logo" style="max-height: 13vh">
       </a>
+      <a class="navbar-burger" id="burger">
+        <span></span>
+        <span></span>
+      </a>
     </section>
-    <section class="navbar-menu" id="nav-links">
+    <section class="navbar-menu is-active" id="nav-links">
       <div class="navbar-end">
-        <a href="https://www.nba.com/" target="_blank" class="navbar-item">Visit the official NBA website!</a>
-        <a class="navbar-item">Seasons</a>
+        <a href="https://www.nba.com/" target="_blank" class="navbar-item is-size-5">Visit the official NBA website!</a>
+        <a class="navbar-item is-size-5">Seasons</a>
       </div>
     </section>
   </nav>
-  <main>
-    <form id="search-bar">
-        <button type="button" id="saved">Saved</button>
-    </form>
-    <!-- API Needs First & Last Name to run properly -->
-    <form id="full-name">
-      <button type="button" id = "search">Search</button>
-      <input name="search" type="text" placeholder="First Name" id="first-name"> 
-      <input name="search" type="text" placeholder="Last Name" id="last-name"> 
-    </form>
-    <section id="results-box">Results</section>
+  <main class="section">
+  <section class="container">
+    <section class="columns">
+    <div class="column is-6" id="full-name">
+      <div class="container">
+        <div class="columns">
+        <div class="column is-6">
+      <input class="p-1 m-1 input" name="search" type="text" placeholder="First Name" id="first-name"> 
+      <input class="p-1 m-1 input" name="search" type="text" placeholder="Last Name" id="last-name"> 
+        </div>
+
+        <div class="column  m-5">
+      <button class="p-1 button is-info" type="button" id = "search">Search</button>
+      <button class="p-1 button is-info" type="button" id="saved">Save</button>
+        </div>
+        </div>
+
+      <section class="row" id="results-box">Results</section>
+    <section id="image">Giphy Image</section>
+    </div>
+    </div>
+
+    <div class="column is-6">
     <section id="player-info">Player Information</section>
     <section id="stats">Stats & Team</section>
-    <section id="league">League Standing</section>
-    <section id="image">Giphy Image</section>
-
-
-
+    </div>
+    </section>
+  </section>
 
   </main>
   <script src="./assets/script.js"></script>
+  <script src="./assets/main.js"></script>
 </body>
 </html>
