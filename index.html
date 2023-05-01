@@ -3,40 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>NBA Fun Facts!</title>
-    <link rel="stylesheet" href="./assets/style.css">
-</head>
-
-<main>
-  <body>
-    <form id="search-bar">
-        <button type="button" id="saved">Saved</button>
-    </form>
-    <!-- API Needs First & Last Name to run properly -->
-    <form id="full-name">
-      <button type="button" id = "search">Search</button>
-      <input name="search" type="text" placeholder="First Name" id="first-name"> 
-      <input name="search" type="text" placeholder="Last Name" id="last-name"> 
-    </form>
-    <section id="results-box">Results</section>
-    <section id="player-info">Player Information</section>
-    <section id="stats">Stats & Team</section>
-    <section id="league">League Standing</section>
-    <section id="image">Giphy Image</section>
-
-
-
-
-  </body>
-</main>
-<script src="./assets/script.js"></script>
-
-
+    <!-- <link rel="stylesheet" href="./assets/style.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
+
 <body>
-    
+  <nav class="navbar has shadow is-info">
+    <section class="navbar-brand">
+      <a class="navbar-item">
+        <img src="assets/nba-logo.jpeg" alt="nba-logo" style="max-height: 13vh">
+      </a>
+      <a class="navbar-burger" id="burger">
+        <span></span>
+        <span></span>
+      </a>
+    </section>
+    <section class="navbar-menu is-active" id="nav-links">
+      <div class="navbar-end">
+        <a href="https://www.nba.com/" target="_blank" class="navbar-item is-size-5">Visit the official NBA website!</a>
+        <a class="navbar-item is-size-5">Seasons</a>
+      </div>
+    </section>
+  </nav>
+  <main class="section">
+  <section class="container">
+    <section class="columns">
+    <div class="column is-6" id="full-name">
+      <div class="container">
+        <div class="columns">
+        <div class="column is-6">
+      <input class="p-1 m-1 input" name="search" type="text" placeholder="First Name" id="first-name"> 
+      <input class="p-1 m-1 input" name="search" type="text" placeholder="Last Name" id="last-name"> 
+        </div>
+
+        <div class="column  m-5">
+      <button class="p-1 button is-info" type="button" id = "search">Search</button>
+      <button class="p-1 button is-info" type="button" id="saved">Save</button>
+        </div>
+        </div>
+
+      <section id="results-box">Results</section>
+    <section class="py-6" id="image"></section>
+    </div>
+    </div>
+
+    <div class="column is-6">
+    <section id="player-info">Player Information</section>
+    <section id="stats">Stats & Team</section>
+    </div>
+    </section>
+  </section>
+
+  </main>
+  <script src="./assets/script.js"></script>
 </body>
 </html>
