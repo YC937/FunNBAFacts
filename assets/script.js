@@ -84,4 +84,6 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     ghiphy.src = links;
     image.append(ghiphy);
   })
+  localStorage.setItem("favorite", saved)
+
 });
