@@ -10,6 +10,7 @@ var conference = document.querySelector('#conference');
 var division = document.querySelector('#division');
 var position = document.querySelector('#position');
 var height = document.querySelector('#height');
+var inches = document.querySelector('#inches');
 var weight = document.querySelector('#weight');
 var points = document.querySelector('#points');
 var assists = document.querySelector('#assists');
@@ -40,7 +41,8 @@ fetch(`https://api.giphy.com/v1/gifs/search?q=NBA}&api_key=fxEW2ambgr9GHTzx6iXmX
     links.push(giff);
   });
 
-var stats = [];
+var profile = [];
+
 
 playerEl.addEventListener("click", function () {
   image.innerHTML = "";
@@ -64,9 +66,13 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     division.textContent = data.data[0].team.division
     position.textContent = data.data[0].position
     height.textContent = data.data[0].height_feet
+    inches.textContent = data.data[0].height_inches
     weight.textContent = data.data[0].weight_pounds
-    stats.push(data.data[0].id);
-    var playerStats = stats[0];
+    profile.push(data.data[0].id);
+    for(var i = 0; i < profile.length; i++){
+     playerStats = profile[i];
+    }
+    
     fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
     .then(function (response) {
         return response.json();
@@ -78,6 +84,7 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
       rebounds.textContent = info.data[0].reb
       steals.textContent = info.data[0].stl
       turnovers.textContent = info.data[0].turnover
+
     })
   })
   fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
@@ -94,4 +101,6 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     ghiphy.src = links;
     image.append(ghiphy);
   })
+  localStorage.setItem("favorite", saved)
+
 });
