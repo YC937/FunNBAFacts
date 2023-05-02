@@ -23,7 +23,7 @@
     <section class="navbar-menu is-active" id="nav-links">
       <div class="navbar-end">
         <a href="https://www.nba.com/" target="_blank" class="navbar-item is-size-3">Visit the official NBA website!</a>
-        <a class="navbar-item is-size-3">Seasons</a>
+        <a class="navbar-item is-size-3" id="seasons">Seasons</a>
       </div>
     </section>
   </nav>
@@ -75,6 +75,23 @@
     </section>
   </section>
 
+  <!--Modals-->
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <form>
+        <div class="field">
+          <label class="label">Enter the year of the season:</label>
+          <div class="control">
+            <input type="number" class="input" placeholder="Year">
+          </div>
+        </div>
+        <div class="mt-6 has-text-centered">
+          <button class="button is-info">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
   </main>
   <script src="./assets/script.js"></script>
 </body>
