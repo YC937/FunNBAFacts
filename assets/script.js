@@ -17,7 +17,66 @@ var assists = document.querySelector('#assists');
 var rebounds = document.querySelector('#rebounds');
 var steals = document.querySelector('#steals');
 var turnovers = document.querySelector('#turnovers');
+var resultsBox = document.querySelector("#results-box");
 var links = [];
+
+//Initial functions
+function init() {
+  var basketballPlayerList = [];
+  basketballPlayerList = JSON.parse(localStorage.getItem("searchedPlayers"));
+if(basketballPlayerList !== null) {
+  for(var i = 0; i < basketballPlayerList.length; i++) {
+    var listEl = document.createElement("button");
+    listEl.textContent = basketballPlayerList[i];
+    listEl.setAttribute("class", "button");
+    listEl.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
+    resultsBox.append(listEl);
+    listEl.addEventListener("click", searchHistoryBtn);
+  }
+  
+}
+};
+
+//Function when we click previous searched cities and we display data on the website
+function searchHistoryBtn () {
+console.log(this.textContent);
+var basketballName = (this.textContent);
+//Fetching info from openweather api.
+fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
+  .then(function (answer) {
+    return answer.json();
+  })
+  .then(function (data) {
+    console.log(data)
+    team.textContent = data.data[0].team.full_name
+    conference.textContent = data.data[0].team.conference
+    division.textContent = data.data[0].team.division
+    position.textContent = data.data[0].position
+    height.textContent = data.data[0].height_feet
+    inches.textContent = data.data[0].height_inches
+    weight.textContent = data.data[0].weight_pounds
+    profile.push(data.data[0].id);
+    for(var i = 0; i < profile.length; i++){
+     playerStats = profile[i];
+    }
+    
+    fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (info) {
+      console.log(info)
+      points.textContent = info.data[0].pts
+      assists.textContent = info.data[0].ast
+      rebounds.textContent = info.data[0].reb
+      steals.textContent = info.data[0].stl
+      turnovers.textContent = info.data[0].turnover
+
+    })
+  })
+};
+
+
 //Mobile Menu
 burgerIcon.addEventListener("click", getMenu);
 
@@ -86,7 +145,7 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
 
     })
   })
-  fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
+  fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
   .then(function (response) {
     return response.json();
   })
@@ -100,6 +159,24 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
     ghiphy.src = links;
     image.append(ghiphy);
   })
-  localStorage.setItem("favorite", saved)
 
-});
+  var playerList = JSON.parse(localStorage.getItem("searchedPlayers")) || [];
+playerList.push(firstNamePlayer.value + lastNamePlayer.value);
+localStorage.setItem("searchedPlayers",JSON.stringify(playerList));
+//Displaying the cities in the local storage into the website.
+for(var i = 0; i < playerList.length; i++) {
+  var playerList = [];
+  playerList.push(firstNamePlayer.value + lastNamePlayer.value);
+  //Creating buttons with our past searched cities.
+  var list = document.createElement("button");
+  list.textContent = playerList[i];
+  //Setting attributes to those buttons.
+  list.setAttribute("class", "button");
+  list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
+  //Appending these buttons into the section.
+  resultsBox.append(list);
+
+}});
+
+
+init();
