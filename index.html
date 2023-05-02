@@ -23,7 +23,7 @@
     <section class="navbar-menu is-active" id="nav-links">
       <div class="navbar-end">
         <a href="https://www.nba.com/" target="_blank" class="navbar-item is-size-3">Visit the official NBA website!</a>
-        <a class="navbar-item is-size-3" id="seasons">Seasons</a>
+        <a class="navbar-item is-size-3" id="feedback">Leave a FeedBack</a>
       </div>
     </section>
   </nav>
@@ -79,15 +79,34 @@
   <div class="modal">
     <div class="modal-background"></div>
     <div class="modal-content has-background-white py-5 px-5">
+      <h4 class="title mb-6">Feedback</h4>
       <form>
         <div class="field">
-          <label class="label">Enter the year of the season:</label>
+          <label class="label">Full Name</label>
           <div class="control">
-            <input type="number" class="input" placeholder="Year">
+            <input type="text" class="input" placeholder="Your full name" id="full-name">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input type="email" class="input" placeholder="Your Email" id="email">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Feedback</label>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:30vh; width: 50vw;"></textarea>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox">
+              I agree to share my name, email and feedback!
+            </label>
           </div>
         </div>
         <div class="mt-6 has-text-centered">
-          <button class="button is-info" id="submit">Submit</button>
+          <button class="button is-danger" id="submit">Submit</button>
         </div>
       </form>
     </div>
@@ -96,3 +115,7 @@
   <script src="./assets/script.js"></script>
 </body>
 </html>
+
+<div class="mt-6 has-text-centered">
+  <button class="button is-info" id="submit">Submit</button>
+</div>

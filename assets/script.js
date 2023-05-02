@@ -19,9 +19,10 @@ var rebounds = document.querySelector('#rebounds');
 var steals = document.querySelector('#steals');
 var turnovers = document.querySelector('#turnovers');
 var resultsBox = document.querySelector("#results-box");
-var seasons = document.querySelector("#seasons");
+var feedback = document.querySelector("#feedback");
 var modal = document.querySelector(".modal");
 var submit = document.querySelector("#submit");
+
 
 var links = [];
 
@@ -29,7 +30,7 @@ var links = [];
 function init() {
 
 //Modal for season's year
-seasons.addEventListener("click", function () {
+feedback.addEventListener("click", function () {
   modal.classList.add("is-active");
 })
 
