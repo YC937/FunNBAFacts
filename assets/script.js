@@ -22,6 +22,19 @@ var links = [];
 
 //Initial functions
 function init() {
+
+  fetch(`https://api.giphy.com/v1/gifs/search?q=NBA&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (info) {
+    var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+    var giff = randomItem.images.original.url;
+    var ghiph = document.createElement("img");
+    ghiph.src = giff;
+    image.append(ghiph);
+    links.push(giff);
+  })
   var basketballPlayerList = [];
   basketballPlayerList = JSON.parse(localStorage.getItem("searchedPlayers"));
 if(basketballPlayerList !== null) {
@@ -39,8 +52,28 @@ if(basketballPlayerList !== null) {
 
 //Function when we click previous searched cities and we display data on the website
 function searchHistoryBtn () {
+  image.innerHTML = " ";
 console.log(this.textContent);
 var basketballName = (this.textContent);
+
+fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
+.then(function (response) {
+  return response.json();
+})
+.then(function (info) {
+  console.log(info);
+  var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+  // console.log(randomItem.images.original.url);
+  var giffi = randomItem.images.original.url;
+  links.push(giffi);
+  var ghiphi = document.createElement("img");
+  for(var i = 0; i < links.length; i++) {
+  ghiphi.src = links[i];
+  }
+  console.log(links);
+  image.append(ghiphi);
+})
+
 //Fetching info from openweather api.
 fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
   .then(function (answer) {
@@ -73,20 +106,6 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
       turnovers.textContent = info.data[0].turnover
 
     })
-    fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (info) {
-    console.log(info)
-    var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
-    // console.log(randomItem.images.original.url);
-    var giffy = randomItem.images.original.url;
-    links.push(giffy);
-    var ghiphy = document.createElement("img");
-    ghiphy.src = links;
-    image.append(ghiphy);
-  })
   })
   
 };
@@ -99,21 +118,7 @@ function getMenu() {
     navbarMenu.classList.toggle("is-active")
 }
 
-//Default giffys
 
-fetch(`https://api.giphy.com/v1/gifs/search?q=NBA&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (info) {
-    var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
-    // console.log(randomItem.images.original.url);
-    var giff = randomItem.images.original.url;
-    var ghiph = document.createElement("img");
-    ghiph.src = giff;
-    image.append(ghiph);
-    links.push(giff);
-  });
 
 var profile = [];
 
