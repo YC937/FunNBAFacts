@@ -1,4 +1,5 @@
 var playerEl = document.querySelector("#search");
+var clear = document.querySelector("#clear");
 var image = document.querySelector("#image");
 var pict = document.querySelector("#pic")
 var firstNamePlayer = document.querySelector("#first-name");
@@ -20,8 +21,13 @@ var turnovers = document.querySelector('#turnovers');
 var resultsBox = document.querySelector("#results-box");
 var links = [];
 
-//Initial functions
+//Initial function.
 function init() {
+
+clear.addEventListener("click", function () {
+  localStorage.clear();
+  location.reload();
+})
 
   fetch(`https://api.giphy.com/v1/gifs/search?q=NBA&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
   .then(function (response) {
@@ -50,7 +56,7 @@ if(basketballPlayerList !== null) {
 }
 };
 
-//Function when we click previous searched cities and we display data on the website
+//Function when we click previous searched players and we display data on the website
 function searchHistoryBtn () {
   image.innerHTML = " ";
 console.log(this.textContent);
@@ -63,7 +69,6 @@ fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2amb
 .then(function (info) {
   console.log(info);
   var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
-  // console.log(randomItem.images.original.url);
   var giffi = randomItem.images.original.url;
   links.push(giffi);
   var ghiphi = document.createElement("img");
@@ -74,7 +79,7 @@ fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2amb
   image.append(ghiphi);
 })
 
-//Fetching info from openweather api.
+//Fetching info from api.
 fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
   .then(function (answer) {
     return answer.json();
@@ -195,6 +200,68 @@ for(var i = 0; i < playerList.length; i++) {
   list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
   //Appending these buttons into the section.
   resultsBox.append(list);
+
+  list.addEventListener("click", searchBtn);
+
+  function searchBtn () {
+
+    image.innerHTML = " ";
+    console.log(this.textContent);
+    var basketballName = (this.textContent);
+    
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (info) {
+      console.log(info);
+      var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+      var giffi = randomItem.images.original.url;
+      links.push(giffi);
+      var ghiphi = document.createElement("img");
+      for(var i = 0; i < links.length; i++) {
+      ghiphi.src = links[i];
+      }
+      console.log(links);
+      image.append(ghiphi);
+    })
+    
+    //Fetching info from api.
+    fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
+      .then(function (answer) {
+        return answer.json();
+      })
+      .then(function (data) {
+        console.log(data)
+        team.textContent = data.data[0].team.full_name
+        conference.textContent = data.data[0].team.conference
+        division.textContent = data.data[0].team.division
+        position.textContent = data.data[0].position
+        height.textContent = data.data[0].height_feet
+        inches.textContent = data.data[0].height_inches
+        weight.textContent = data.data[0].weight_pounds
+        profile.push(data.data[0].id);
+        for(var i = 0; i < profile.length; i++){
+         playerStats = profile[i];
+        }
+        
+        fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (info) {
+          console.log(info)
+          points.textContent = info.data[0].pts
+          assists.textContent = info.data[0].ast
+          rebounds.textContent = info.data[0].reb
+          steals.textContent = info.data[0].stl
+          turnovers.textContent = info.data[0].turnover
+    
+        })
+      })
+
+  }
+
 
 }});
 
