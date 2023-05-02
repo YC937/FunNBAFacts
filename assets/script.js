@@ -47,9 +47,10 @@ if(basketballPlayerList !== null) {
   for(var i = 0; i < basketballPlayerList.length; i++) {
     var listEl = document.createElement("button");
     listEl.textContent = basketballPlayerList[i];
-    listEl.setAttribute("class", "button");
-    listEl.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
+    listEl.setAttribute("class", "column is-4 button");
+    listEl.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%;")
     resultsBox.append(listEl);
+
     listEl.addEventListener("click", searchHistoryBtn);
   }
   
@@ -133,10 +134,12 @@ playerEl.addEventListener("click", function () {
   var firstName = firstNamePlayer.value
   if(firstName === "") {
     location.reload();
+    list.remove();
   }
   var lastName = lastNamePlayer.value
   if(lastName === "") {
     location.reload();
+    list.remove();
   }
 fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
   .then(function (answer) {
@@ -196,7 +199,7 @@ for(var i = 0; i < playerList.length; i++) {
   var list = document.createElement("button");
   list.textContent = playerList[i];
   //Setting attributes to those buttons.
-  list.setAttribute("class", "button");
+  list.setAttribute("class", "column is-4 button");
   list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
   //Appending these buttons into the section.
   resultsBox.append(list);
