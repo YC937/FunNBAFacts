@@ -10,6 +10,7 @@ var conference = document.querySelector('#conference');
 var division = document.querySelector('#division');
 var position = document.querySelector('#position');
 var height = document.querySelector('#height');
+var inches = document.querySelector('#inches');
 var weight = document.querySelector('#weight');
 var points = document.querySelector('#points');
 var assists = document.querySelector('#assists');
@@ -64,6 +65,7 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     division.textContent = data.data[0].team.division
     position.textContent = data.data[0].position
     height.textContent = data.data[0].height_feet
+    inches.textContent = data.data[0].height_inches
     weight.textContent = data.data[0].weight_pounds
     stats.push(data.data[0].id);
     var playerStats = stats[0];
