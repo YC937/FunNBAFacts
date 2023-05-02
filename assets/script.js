@@ -4,7 +4,18 @@ var pict = document.querySelector("#pic")
 var firstNamePlayer = document.querySelector("#first-name");
 var lastNamePlayer = document.querySelector("#last-name");
 var burgerIcon = document.querySelector("#burger");
-var navbarMenu = document.querySelector("#nav-links")
+var navbarMenu = document.querySelector("#nav-links");
+var team = document.querySelector('#team');
+var conference = document.querySelector('#conference');
+var division = document.querySelector('#division');
+var position = document.querySelector('#position');
+var height = document.querySelector('#height');
+var weight = document.querySelector('#weight');
+var points = document.querySelector('#points');
+var assists = document.querySelector('#assists');
+var rebounds = document.querySelector('#rebounds');
+var steals = document.querySelector('#steals');
+var turnovers = document.querySelector('#turnovers');
 var links = [];
 //Mobile Menu
 burgerIcon.addEventListener("click", getMenu);
@@ -29,6 +40,7 @@ fetch(`https://api.giphy.com/v1/gifs/search?q=NBA&api_key=fxEW2ambgr9GHTzx6iXmXJ
     links.push(giff);
   });
 
+var profile = [];
 var stats = [];
 
 playerEl.addEventListener("click", function () {
@@ -47,13 +59,27 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
     return answer.json();
   })
   .then(function (data) {
-    stats.push(data.data[0].id);
+    console.log(data)
+    team.textContent = data.data[0].team.full_name
+    conference.textContent = data.data[0].team.conference
+    division.textContent = data.data[0].team.division
+    position.textContent = data.data[0].position
+    height.textContent = data.data[0].height_feet
+    weight.textContent = data.data[0].weight_pounds
+    profile.push(data.data[0].id);
+    console.log(profile);
     var playerStats = stats[0];
     fetch(`http://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
     .then(function (response) {
         return response.json();
     })
     .then(function (info) {
+      console.log(info)
+      points.textContent = info.data[0].pts
+      assists.textContent = info.data[0].ast
+      rebounds.textContent = info.data[0].reb
+      steals.textContent = info.data[0].stl
+      turnovers.textContent = info.data[0].turnover
     })
   })
   fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
@@ -61,6 +87,7 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
     return response.json();
   })
   .then(function (info) {
+    console.log(info)
     var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
     // console.log(randomItem.images.original.url);
     var giffy = randomItem.images.original.url;
