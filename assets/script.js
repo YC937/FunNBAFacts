@@ -42,7 +42,7 @@ function searchHistoryBtn () {
 console.log(this.textContent);
 var basketballName = (this.textContent);
 //Fetching info from openweather api.
-fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
+fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
   .then(function (answer) {
     return answer.json();
   })
@@ -73,7 +73,22 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
       turnovers.textContent = info.data[0].turnover
 
     })
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
+  .then(function (response) {
+    return response.json();
   })
+  .then(function (info) {
+    console.log(info)
+    var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+    // console.log(randomItem.images.original.url);
+    var giffy = randomItem.images.original.url;
+    links.push(giffy);
+    var ghiphy = document.createElement("img");
+    ghiphy.src = links;
+    image.append(ghiphy);
+  })
+  })
+  
 };
 
 
@@ -118,7 +133,7 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
     return answer.json();
   })
   .then(function (data) {
-    console.log(data)
+    console.log(data);
     team.textContent = data.data[0].team.full_name
     conference.textContent = data.data[0].team.conference
     division.textContent = data.data[0].team.division
@@ -161,12 +176,12 @@ fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`
   })
 
   var playerList = JSON.parse(localStorage.getItem("searchedPlayers")) || [];
-playerList.push(firstNamePlayer.value + lastNamePlayer.value);
+playerList.push(firstNamePlayer.value + " " + lastNamePlayer.value);
 localStorage.setItem("searchedPlayers",JSON.stringify(playerList));
 //Displaying the cities in the local storage into the website.
 for(var i = 0; i < playerList.length; i++) {
   var playerList = [];
-  playerList.push(firstNamePlayer.value + lastNamePlayer.value);
+  playerList.push(firstNamePlayer.value + " " + lastNamePlayer.value);
   //Creating buttons with our past searched cities.
   var list = document.createElement("button");
   list.textContent = playerList[i];
