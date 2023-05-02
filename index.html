@@ -23,7 +23,7 @@
     <section class="navbar-menu is-active" id="nav-links">
       <div class="navbar-end">
         <a href="https://www.nba.com/" target="_blank" class="navbar-item is-size-3">Visit the official NBA website!</a>
-        <a class="navbar-item is-size-3">Seasons</a>
+        <a class="navbar-item is-size-3" id="seasons">Seasons</a>
       </div>
     </section>
   </nav>
@@ -40,11 +40,11 @@
 
         <div class="column  m-5">
       <button class="p-1 button is-info" type="button" id = "search">Search</button>
-      <button class="p-1 button is-info" type="button" id="saved">Save</button>
+      <button class="p-1 button is-info" type="button" id="clear">Clear</button>
         </div>
         </div>
-
-      <section id="results-box">Results</section>
+        
+      <section class="column" id="results-box"></section>
     <section class="py-6" id="image"></section>
     </div>
     </div>
@@ -53,19 +53,11 @@
       <section class="my-4 mx-4 box has-background-info has-text-light" id="profile" >
       <h2 class="is-size-3">Player Information</h2>
       <ul>
-
-          <li>Team: <span id="team"></span> </li>
-          <li>Conference: <span id="conference"></span></li>
-          <li>Division: <span id="division"></span></li>
-          <li>Position: <span id="position"></span></li>
-          <li>Height: <span id="height"></span> feet <span id="inches"></span> inches</li>
-          <li>Weight: <span id="weight"></span> lbs</li>
-=======
           <li class="is-size-4">Team: <span class="is-size-5" id="team"></span> </li>
           <li class="is-size-4">Conference: <span class="is-size-5" id="conference"></span></li>
           <li class="is-size-4">Division: <span class="is-size-5" id="division"></span></li>
           <li class="is-size-4">Position: <span class="is-size-5" id="position"></span></li>
-          <li class="is-size-4">Height: <span class="is-size-5" id="height"></span> feet</li>
+          <li class="is-size-4">Height: <span class="is-size-5" id="height"></span> feet <span id="inches"> inches</span></li>
           <li class="is-size-4">Weight: <span class="is-size-5" id="weight"></span> lbs</li>
 
       </ul>
@@ -83,6 +75,23 @@
     </section>
   </section>
 
+  <!--Modals-->
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <form>
+        <div class="field">
+          <label class="label">Enter the year of the season:</label>
+          <div class="control">
+            <input type="number" class="input" placeholder="Year">
+          </div>
+        </div>
+        <div class="mt-6 has-text-centered">
+          <button class="button is-info" id="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
   </main>
   <script src="./assets/script.js"></script>
 </body>
