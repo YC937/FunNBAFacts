@@ -11,6 +11,11 @@ var division = document.querySelector('#division');
 var position = document.querySelector('#position');
 var height = document.querySelector('#height');
 var weight = document.querySelector('#weight');
+var points = document.querySelector('#points');
+var assists = document.querySelector('#assists');
+var rebounds = document.querySelector('#rebounds');
+var steals = document.querySelector('#steals');
+var turnovers = document.querySelector('#turnovers');
 var links = [];
 //Mobile Menu
 burgerIcon.addEventListener("click", getMenu);
@@ -68,6 +73,11 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     })
     .then(function (info) {
       console.log(info)
+      points.textContent = info.data[0].pts
+      assists.textContent = info.data[0].ast
+      rebounds.textContent = info.data[0].reb
+      steals.textContent = info.data[0].stl
+      turnovers.textContent = info.data[0].turnover
     })
   })
   fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
