@@ -21,15 +21,19 @@ var turnovers = document.querySelector('#turnovers');
 var resultsBox = document.querySelector("#results-box");
 var seasons = document.querySelector("#seasons");
 var modal = document.querySelector(".modal");
-var modalBg = document.querySelector(".modal-background");
+var submit = document.querySelector("#submit");
 
 var links = [];
 
 //Initial function.
 function init() {
 
-//Modal for season
+//Modal for season's year
 seasons.addEventListener("click", function () {
+  modal.classList.add("is-active");
+})
+
+submit.addEventListener("click", function () {
   modal.classList.add("is-active");
 })
 
