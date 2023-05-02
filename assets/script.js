@@ -15,7 +15,7 @@ function getMenu() {
 
 //Default giffys
 
-fetch(`http://api.giphy.com/v1/gifs/search?q=NBA}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
+fetch(`https://api.giphy.com/v1/gifs/search?q=NBA}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
   .then(function (response) {
     return response.json();
   })
@@ -56,7 +56,7 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     .then(function (info) {
     })
   })
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
+  fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=100`)
   .then(function (response) {
     return response.json();
   })
