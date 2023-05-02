@@ -95,7 +95,7 @@ fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2amb
 })
 
 //Fetching info from api.
-fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
+fetch(`https://www.balldontlie.io/api/v1/players?search=${basketballName}`)
   .then(function (answer) {
     return answer.json();
   })
@@ -155,7 +155,7 @@ playerEl.addEventListener("click", function () {
     location.reload();
     list.remove();
   }
-fetch(`http://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
+fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
   .then(function (answer) {
     return answer.json();
   })
@@ -244,7 +244,7 @@ for(var i = 0; i < playerList.length; i++) {
     })
     
     //Fetching info from api.
-    fetch(`http://www.balldontlie.io/api/v1/players?search=${basketballName}`)
+    fetch(`https://www.balldontlie.io/api/v1/players?search=${basketballName}`)
       .then(function (answer) {
         return answer.json();
       })
