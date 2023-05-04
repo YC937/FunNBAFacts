@@ -51,6 +51,9 @@
 🚀 Add another Nav bar modal that allows user to change the seasons <br>
 
 ## Links
+🔗Repo: https://github.com/YC937/FunNBAFacts <br>
+
+🔗 Website: https://yc937.github.io/FunNBAFacts/
 
 ## License
 
