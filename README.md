@@ -5,7 +5,7 @@
 ## 💻 CHECK OUR WEBSITE!
 <br>
 <br>
-<img src="./assets/screenshot-2.png">
+<img src="./assets/screenshot-1.png">
 
 ## Concept
 🎯 Fun User Interactive website. <br> 🎯 We LIKE basketball games and players!
