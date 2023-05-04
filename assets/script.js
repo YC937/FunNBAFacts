@@ -69,7 +69,7 @@ if(basketballPlayerList !== null) {
     var listEl = document.createElement("button");
     // Adding attributes to buttons
     listEl.textContent = basketballPlayerList[i];
-    listEl.setAttribute("class", "columns is-vcentered button mt-3 mx-3 is-primary has-text-info-dark has-text-weight-bold");
+    listEl.setAttribute("class", "columns is-vcentered button mt-2 mx-2 is-primary has-text-info-dark has-text-weight-bold");
     // Apending buttons
     resultsBox.append(listEl);
 
@@ -227,7 +227,7 @@ for(var i = 0; i < playerList.length; i++) {
   var list = document.createElement("button");
   list.textContent = playerList[i];
   //Setting attributes to those buttons.
-  list.setAttribute("class", "columns is-vcentered button mt-3 mx-3 is-primary has-text-info-dark has-text-weight-bold");
+  list.setAttribute("class", "columns is-vcentered button mt-2 mx-2 is-primary has-text-info-dark has-text-weight-bold");
   //Appending these buttons.
   resultsBox.append(list);
 
