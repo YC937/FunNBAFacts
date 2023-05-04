@@ -1,3 +1,4 @@
+// All the variables.
 var playerEl = document.querySelector("#search");
 var clear = document.querySelector("#clear");
 var image = document.querySelector("#image");
@@ -38,11 +39,12 @@ submit.addEventListener("click", function () {
   modal.classList.add("is-active");
 })
 
+//Clear button function
 clear.addEventListener("click", function () {
   localStorage.clear();
   location.reload();
 })
-
+// Ghiphy fetch
   fetch(`https://api.giphy.com/v1/gifs/search?q=NBA&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
   .then(function (response) {
     return response.json();
@@ -50,18 +52,25 @@ clear.addEventListener("click", function () {
   .then(function (info) {
     var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
     var giff = randomItem.images.original.url;
+    // Creating image.
     var ghiph = document.createElement("img");
+    // Adding the source to the image.
     ghiph.src = giff;
+    // Apending the image
     image.append(ghiph);
     links.push(giff);
   })
+  // Getting player's info from local storage
   var basketballPlayerList = [];
   basketballPlayerList = JSON.parse(localStorage.getItem("searchedPlayers"));
 if(basketballPlayerList !== null) {
   for(var i = 0; i < basketballPlayerList.length; i++) {
+    // Creating buttons for prebious serached players
     var listEl = document.createElement("button");
+    // Adding attributes to buttons
     listEl.textContent = basketballPlayerList[i];
-    listEl.setAttribute("class", "columns is-vcentered button has-background-danger");
+    listEl.setAttribute("class", "columns is-vcentered button mt-3 mx-3 is-primary has-text-info-dark has-text-weight-bold");
+    // Apending buttons
     resultsBox.append(listEl);
 
     listEl.addEventListener("click", searchHistoryBtn);
@@ -73,33 +82,34 @@ if(basketballPlayerList !== null) {
 //Function when we click previous searched players and we display data on the website
 function searchHistoryBtn () {
   image.innerHTML = " ";
-console.log(this.textContent);
 var basketballName = (this.textContent);
-
+// Fetching giphy.
 fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
 .then(function (response) {
   return response.json();
 })
 .then(function (info) {
-  console.log(info);
   var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
+  // Selecting random giphy
   var giffi = randomItem.images.original.url;
   links.push(giffi);
+  // Creating image
   var ghiphi = document.createElement("img");
   for(var i = 0; i < links.length; i++) {
+  // Adding the source to the image
   ghiphi.src = links[i];
   }
-  console.log(links);
+  // Appending the image.
   image.append(ghiphi);
 })
 
-//Fetching info from api.
+//Fetching player's info from API.
 fetch(`https://www.balldontlie.io/api/v1/players?search=${basketballName}`)
   .then(function (answer) {
     return answer.json();
   })
   .then(function (data) {
-    console.log(data)
+    // Appending the player's info from the API to our website
     team.textContent = data.data[0].team.full_name
     conference.textContent = data.data[0].team.conference
     division.textContent = data.data[0].team.division
@@ -111,13 +121,13 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${basketballName}`)
     for(var i = 0; i < profile.length; i++){
      playerStats = profile[i];
     }
-    
+    // Fetching player's stats from the API
     fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
     .then(function (response) {
         return response.json();
     })
     .then(function (info) {
-      console.log(info)
+      // Appending player's stats from the API to our website
       points.textContent = info.data[0].pts
       assists.textContent = info.data[0].ast
       rebounds.textContent = info.data[0].reb
@@ -138,7 +148,7 @@ function getMenu() {
 }
 
 
-
+// Adding search button function
 var profile = [];
 
 playerEl.addEventListener("click", function () {
@@ -154,12 +164,13 @@ playerEl.addEventListener("click", function () {
     location.reload();
     list.remove();
   }
+  // Fetching the player's info from the API to our website
 fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}`)
   .then(function (answer) {
     return answer.json();
   })
   .then(function (data) {
-    console.log(data);
+    // Appending the info from the API to our website
     team.textContent = data.data[0].team.full_name
     conference.textContent = data.data[0].team.conference
     division.textContent = data.data[0].team.division
@@ -171,13 +182,13 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
     for(var i = 0; i < profile.length; i++){
      playerStats = profile[i];
     }
-    
+    // Fetching player's stats from the API to our website
     fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
     .then(function (response) {
         return response.json();
     })
     .then(function (info) {
-      console.log(info)
+      //Appending player's stats from the API to our website
       points.textContent = info.data[0].pts
       assists.textContent = info.data[0].ast
       rebounds.textContent = info.data[0].reb
@@ -186,36 +197,41 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=${firstName}+${lastName}
 
     })
   })
+  // Fetching giphy from the APi
   fetch(`https://api.giphy.com/v1/gifs/search?q=${firstName}+${lastName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
   .then(function (response) {
     return response.json();
   })
   .then(function (info) {
-    console.log(info)
+  // Selecting random giphy
     var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
-    // console.log(randomItem.images.original.url);
     var giffy = randomItem.images.original.url;
     links.push(giffy);
+    // Create image 
     var ghiphy = document.createElement("img");
+    // Add source to the image 
     ghiphy.src = links;
+    // Append the image
     image.append(ghiphy);
   })
-
+  // Getting data from local storage
   var playerList = JSON.parse(localStorage.getItem("searchedPlayers")) || [];
 playerList.push(firstNamePlayer.value + " " + lastNamePlayer.value);
+// Creating local storage
 localStorage.setItem("searchedPlayers",JSON.stringify(playerList));
 //Displaying the cities in the local storage into the website.
 for(var i = 0; i < playerList.length; i++) {
   var playerList = [];
   playerList.push(firstNamePlayer.value + " " + lastNamePlayer.value);
-  //Creating buttons with our past searched cities.
+  //Creating buttons.
   var list = document.createElement("button");
   list.textContent = playerList[i];
   //Setting attributes to those buttons.
-  list.setAttribute("class", "columns is-vcentered button has-background-danger");
-  // list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
-  //Appending these buttons into the section.
+  list.setAttribute("class", "columns is-vcentered button mt-3 mx-3 is-primary has-text-info-dark has-text-weight-bold");
+  //Appending these buttons.
   resultsBox.append(list);
+
+  // Previous searched players buttons function
 
   list.addEventListener("click", searchBtn);
 
@@ -224,31 +240,33 @@ for(var i = 0; i < playerList.length; i++) {
     image.innerHTML = " ";
     console.log(this.textContent);
     var basketballName = (this.textContent);
-    
+    // Fetching giphy from the API
     fetch(`https://api.giphy.com/v1/gifs/search?q=${basketballName}&api_key=fxEW2ambgr9GHTzx6iXmXJKl5Zss1Fma&limit=1000`)
     .then(function (response) {
       return response.json();
     })
     .then(function (info) {
-      console.log(info);
+      // Selecting random giphy
       var randomItem = info.data[Math.floor(Math.random()*info.data.length)];
       var giffi = randomItem.images.original.url;
       links.push(giffi);
+      // Creating image
       var ghiphi = document.createElement("img");
       for(var i = 0; i < links.length; i++) {
+        // Adding source to the image
       ghiphi.src = links[i];
       }
-      console.log(links);
+      // Appending the image
       image.append(ghiphi);
     })
     
-    //Fetching info from api.
+    //Fetching player's info from API.
     fetch(`https://www.balldontlie.io/api/v1/players?search=${basketballName}`)
       .then(function (answer) {
         return answer.json();
       })
       .then(function (data) {
-        console.log(data)
+        // Appending player's info from the API to our website
         team.textContent = data.data[0].team.full_name
         conference.textContent = data.data[0].team.conference
         division.textContent = data.data[0].team.division
@@ -260,13 +278,13 @@ for(var i = 0; i < playerList.length; i++) {
         for(var i = 0; i < profile.length; i++){
          playerStats = profile[i];
         }
-        
+        // Fetching the player's stats from the API to our website
         fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2022&player_ids[]=${playerStats}`)
         .then(function (response) {
             return response.json();
         })
         .then(function (info) {
-          console.log(info)
+          // Appending player's stats from the API to our website
           points.textContent = info.data[0].pts
           assists.textContent = info.data[0].ast
           rebounds.textContent = info.data[0].reb

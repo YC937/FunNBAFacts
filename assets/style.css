@@ -1,0 +1,17 @@
+#body {
+    background-color:darkturquoise
+}
+
+#main {
+    height: 100%;
+        background-image: url(./nba-wall.jpeg) ;
+        background-position: center center;
+        background-repeat:  no-repeat;
+        background-attachment: fixed;
+        background-size:  cover;
+        background-color: #e9c84f;
+};
+
+
+
+
