@@ -61,8 +61,7 @@ if(basketballPlayerList !== null) {
   for(var i = 0; i < basketballPlayerList.length; i++) {
     var listEl = document.createElement("button");
     listEl.textContent = basketballPlayerList[i];
-    listEl.setAttribute("class", "column is-4 button");
-    listEl.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%;")
+    listEl.setAttribute("class", "columns is-vcentered button has-background-danger");
     resultsBox.append(listEl);
 
     listEl.addEventListener("click", searchHistoryBtn);
@@ -213,8 +212,8 @@ for(var i = 0; i < playerList.length; i++) {
   var list = document.createElement("button");
   list.textContent = playerList[i];
   //Setting attributes to those buttons.
-  list.setAttribute("class", "column is-4 button");
-  list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
+  list.setAttribute("class", "columns is-vcentered button has-background-danger");
+  // list.setAttribute("style", "background-color: rgb(9, 133, 235); color: aliceblue; border-style: hidden; margin-top: 2%")
   //Appending these buttons into the section.
   resultsBox.append(list);
 
