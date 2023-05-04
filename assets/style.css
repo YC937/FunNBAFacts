@@ -1,0 +1,17 @@
+
+body::-webkit-scrollbar{
+    display: none;
+  }
+
+#main {
+    height: 100%;
+    background-image: url(./nba-wall.jpeg);
+    background-position: inherit;
+    background-repeat:inherit;
+    background-attachment: revert;
+    background-size: contain;
+};
+
+
+
+
